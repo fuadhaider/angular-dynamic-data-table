@@ -1,6 +1,11 @@
 <p>
   table-group works!
 </p>
+<span>
+  <button (click)="pageLength=5">5</button>
+  <button (click)="pageLength=10">10</button>
+  <button (click)="pageLength=15">25</button>
+</span>
 
 <table>
   <thead>
@@ -13,15 +18,21 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor = "let status of contentArray; let i=index;">
-        <div *ngIf= "i<100">
+      <!-- <tr *ngFor = "let status of allStatus; let i=index;"> -->
+      <tr *ngFor = "let status of allStatus| slice: 0:pageLength">
+
+        <!-- <div *ngIf= "i<5"> -->
+          <!-- <td *ngIf= "i<5">{{status.albumId}}</td>
+          <td *ngIf= "i<5">{{status.id}}</td>
+          <td *ngIf= "i<5">{{status.title}}</td>
+          <td *ngIf= "i<5">{{status.url}}</td>
+          <td *ngIf= "i<5"><img src="{{status.thumbnailUrl}}"></td> -->
           <td>{{status.albumId}}</td>
           <td>{{status.id}}</td>
           <td>{{status.title}}</td>
           <td>{{status.url}}</td>
-          <td><img src="{{status.thumbnailUrl}}" alt="{{status.thumbnailUrl}}"></td>
-
-        </div>
-        </tr>
+          <td><img src="{{status.thumbnailUrl}}"></td>
+        <!-- </div> -->
+      </tr>
     </tbody>
 </table>

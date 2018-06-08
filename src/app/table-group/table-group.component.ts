@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MusicObject } from './music-object';
+// import { MusicObject } from './music-object';
 // import { MusicData } from './music-data';
 import { LoadDataService } from './load-data.service';
 
@@ -9,7 +9,11 @@ import { LoadDataService } from './load-data.service';
   styleUrls: ['./table-group.component.scss']
 })
 export class TableGroupComponent implements OnInit {
-  contentArray: MusicObject[];
+  allStatus: any = [];
+
+  pageLength: number = 5;
+  sliceStart: number;
+  sliceEnd: number;
 
   constructor(private loadDataService: LoadDataService) { }
 
@@ -18,8 +22,8 @@ export class TableGroupComponent implements OnInit {
   }
 
   getData(): void {
-    this.loadDataService.sendAll().subscribe(contentArray =>
-    this.contentArray = contentArray);
+    this.loadDataService.getUrlData().subscribe(data =>
+    this.allStatus = data);
   }
 
 }

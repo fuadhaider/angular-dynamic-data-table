@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
-
-import { MusicObject } from './music-object';
-import { MusicData } from './music-data';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadDataService {
-  content: Observable<MusicObject[]>;
+  constructor(private httpClient: HttpClient) { }
 
-  constructor() { }
-
-  sendAll(): Observable<MusicObject[]> {
-    return of (MusicData);
+  getUrlData() {
+    const url = 'https://raw.githubusercontent.com/fuadhaider/mock-data/master/test.json';
+    // const url = 'https://jsonplaceholder.typicode.com/photos';
+    return this.httpClient.get(url);
   }
 }
