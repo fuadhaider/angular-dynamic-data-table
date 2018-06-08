@@ -1,0 +1,27 @@
+<p>
+  table-group works!
+</p>
+
+<table>
+  <thead>
+      <tr>
+        <th>Album ID</th>
+        <th>ID</th>
+        <th>Title</th>
+        <th>URL</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let status of contentArray; let i=index;">
+        <div *ngIf= "i<100">
+          <td>{{status.albumId}}</td>
+          <td>{{status.id}}</td>
+          <td>{{status.title}}</td>
+          <td>{{status.url}}</td>
+          <td><img src="{{status.thumbnailUrl}}" alt="{{status.thumbnailUrl}}"></td>
+
+        </div>
+        </tr>
+    </tbody>
+</table>
