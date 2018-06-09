@@ -5,6 +5,7 @@
   <button (click)="pageLength=5">5</button>
   <button (click)="pageLength=10">10</button>
   <button (click)="pageLength=15">25</button>
+  <button (click)="sortData">Sort</button>
 </span>
 
 <table>
@@ -18,9 +19,10 @@
       </tr>
     </thead>
     <tbody>
+      <!-- <tr> -->
       <!-- <tr *ngFor = "let status of allStatus; let i=index;"> -->
-      <tr *ngFor = "let status of allStatus| slice: 0:pageLength">
-
+      <tr *ngFor = "let status of allStatus">
+<!-- | slice: 0:pageLength -->
         <!-- <div *ngIf= "i<5"> -->
           <!-- <td *ngIf= "i<5">{{status.albumId}}</td>
           <td *ngIf= "i<5">{{status.id}}</td>

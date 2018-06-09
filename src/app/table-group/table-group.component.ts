@@ -18,12 +18,30 @@ export class TableGroupComponent implements OnInit {
   constructor(private loadDataService: LoadDataService) { }
 
   ngOnInit() {
-    this.getData();
-  }
-
-  getData(): void {
+    // this.getData();
     this.loadDataService.getUrlData().subscribe(data =>
     this.allStatus = data);
+    console.log(this.allStatus);
+  }
+
+  getData() {
+
+  }
+
+  sortData() {
+    this.loadDataService.getUrlData().subscribe(data =>
+    this.allStatus = data);
+    this.allStatus.sort(function(a, b) {
+      var nameA = a.title.toUpperCase(); // ignore upper and lowercase
+      var nameB = b.title.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
   }
 
 }
