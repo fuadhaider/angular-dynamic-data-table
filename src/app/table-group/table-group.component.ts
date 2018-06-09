@@ -10,9 +10,7 @@ import { LoadDataService } from './load-data.service';
 })
 export class TableGroupComponent implements OnInit {
   allStatus: any = [];
-  ss:any = [];
-  query = "";
-  filteredList;
+  query:string = "";
   pageLength: number = 5;
   sliceStart: number;
   sliceEnd: number;
@@ -32,9 +30,9 @@ export class TableGroupComponent implements OnInit {
 
   filterData() {
     this.loadDataService.getUrlData().subscribe(data => {
-      this.ss = data;
+      this.allStatus = data;
 
-      this.allStatus = this.ss.filter(function(el){
+      this.allStatus = this.allStatus.filter(function(el){
         var result="";
           for(var key in el){
             result+= el[key];
@@ -43,18 +41,6 @@ export class TableGroupComponent implements OnInit {
       }.bind(this));
     });
   }
-
-  // filterData(value:string) {
-  //   this.loadDataService.getUrlData().subscribe(data => {
-  //     this.allStatus = data;
-  //     for (var i = 0; i < this.allStatus.length; i++) {
-  //         if (this.allStatus[i].title === value) {
-  //             return this.allStatus[i];
-  //         }
-  //     }
-  //     return null;
-  //   });
-  // }
 
   sortNumber() {
     this.loadDataService.getUrlData().subscribe(data => {
@@ -70,6 +56,7 @@ export class TableGroupComponent implements OnInit {
       });
     });
   }
+
   sortAlbumId() {
     this.loadDataService.getUrlData().subscribe(data => {
       this.allStatus = data;
