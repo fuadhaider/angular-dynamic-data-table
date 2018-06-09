@@ -9,7 +9,7 @@
   <button (click)="sortNumber()">Sort id</button>
   <button (click)="sortData()">Sort title</button>
   <button (click)="sortUrl()">Sort url</button>
-
+  <input (keyup)=filterData() [(ngModel)]=query/>
 </span>
 
 <table>
