@@ -25,7 +25,7 @@
     <tbody>
       <!-- <tr> -->
       <!-- <tr *ngFor = "let status of allStatus; let i=index;"> -->
-      <tr *ngFor = "let status of allStatus">
+      <tr *ngFor = "let status of allStatus| slice:pageStart:pageEnd">
 <!-- | slice: 0:pageLength -->
         <!-- <div *ngIf= "i<5"> -->
           <!-- <td *ngIf= "i<5">{{status.albumId}}</td>

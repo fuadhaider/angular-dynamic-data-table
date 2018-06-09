@@ -12,8 +12,8 @@ export class TableGroupComponent implements OnInit {
   allStatus: any = [];
   query:string = "";
   pageLength: number = 5;
-  sliceStart: number;
-  sliceEnd: number;
+  pageStart: number = 0;
+  pageEnd: number = this.pageStart + this.pageLength;
 
   constructor(private loadDataService: LoadDataService) { }
 
