@@ -42,6 +42,20 @@ export class TableGroupComponent implements OnInit {
       });
     });
   }
+  sortAlbumId() {
+    this.loadDataService.getUrlData().subscribe(data => {
+      this.allStatus = data;
+      this.allStatus.sort(function(a, b) {
+        if (a.albumId < b.albumId) {
+          return -1;
+        }
+        if (a.albumId > b.albumId) {
+          return 1;
+        }
+        return 0;
+      });
+    });
+  }
 
   sortData() {
     this.loadDataService.getUrlData().subscribe(data => {
@@ -59,5 +73,23 @@ export class TableGroupComponent implements OnInit {
       });
     });
   }
+
+  sortUrl() {
+    this.loadDataService.getUrlData().subscribe(data => {
+      this.allStatus = data;
+      this.allStatus.sort(function(a, b) {
+        var nameA = a.url.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.url.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
+    });
+  }
+
 
 }
