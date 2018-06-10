@@ -13,12 +13,12 @@ export class LoadDataService {
     return this.httpClient.get(url);
   }
 
-  searchData(term: string) {
-    if (!term.trim()) {
-      return [];
-    }
-    else {
-      term = term.toLowerCase();
-    }
-  }
+  // searchData(term: string) {
+  //   if (!term.trim()) {
+  //     return [];
+  //   }
+  //   else {
+  //     term = term.toLowerCase();
+  //   }
+  // }
 }

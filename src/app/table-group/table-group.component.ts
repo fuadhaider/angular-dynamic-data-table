@@ -17,7 +17,10 @@ export class TableGroupComponent implements OnInit {
   pageLength: number = 5;
   pageStart: number = 0;
   pageEnd: number = 5;
-  pageMax: number = 4;
+  pageNumber: number;
+  itemNumber: number;
+
+  // pageMax: number = 4;
 
   // messages: Message[];
   // loading = false;
@@ -45,7 +48,18 @@ export class TableGroupComponent implements OnInit {
     this.pageEnd = this.pageStart + this.pageLength;
   }
 
-  pageNumber(a:number) {
+
+  goPreviousPage() {
+    this.pageStart = this.pageStart - this.pageLength;
+    this.pageEnd = this.pageEnd - this.pageLength;
+  }
+
+  goNextPage() {
+    this.pageStart = this.pageStart + this.pageLength;
+    this.pageEnd = this.pageEnd + this.pageLength;
+  }
+
+  getPageNumber(a:number) {
     if(a==1) {
       this.pageStart = 0;
       this.pageEnd = this.pageStart + this.pageLength;

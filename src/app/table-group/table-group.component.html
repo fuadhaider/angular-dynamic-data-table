@@ -10,7 +10,12 @@
   <button (click)="sortData()">Sort title</button>
   <button (click)="sortUrl()">Sort url</button>
   <input (keyup)=filterData() [(ngModel)]=query/>
-  <!-- <input #pageInput (keyup.enter)="pageNumber(pageInput.value)"> -->
+  <!-- <input #pageInput (keyup.enter)="getPageNumber(pageInput.value)"> -->
+</div>
+
+<div>
+  <button (click)="goPreviousPage()">Previous</button>
+  <button (click)="goNextPage()">Next</button>
 </div>
 
 <!-- <my-pagination
