@@ -2,9 +2,9 @@
   table-group works!
 </p>
 <span>
-  <button (click)="pageLength=5">5</button>
-  <button (click)="pageLength=10">10</button>
-  <button (click)="pageLength=15">25</button>
+  <button (click)="setPageLength(5)">5</button>
+  <button (click)="setPageLength(10)">10</button>
+  <button (click)="setPageLength(15)">25</button>
   <button (click)="sortAlbumId()">Sort Album</button>
   <button (click)="sortNumber()">Sort id</button>
   <button (click)="sortData()">Sort title</button>
@@ -25,6 +25,8 @@
     <tbody>
       <!-- <tr> -->
       <!-- <tr *ngFor = "let status of allStatus; let i=index;"> -->
+      <!-- <tr *ngFor = "let status of allStatus| slice:0:pageLength"> -->
+
       <tr *ngFor = "let status of allStatus| slice:pageStart:pageEnd">
 <!-- | slice: 0:pageLength -->
         <!-- <div *ngIf= "i<5"> -->

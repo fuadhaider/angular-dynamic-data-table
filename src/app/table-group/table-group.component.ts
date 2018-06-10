@@ -10,10 +10,10 @@ import { LoadDataService } from './load-data.service';
 })
 export class TableGroupComponent implements OnInit {
   allStatus: any = [];
-  query:string = "";
+  query: string = "";
   pageLength: number = 5;
   pageStart: number = 0;
-  pageEnd: number = this.pageStart + this.pageLength;
+  pageEnd: number;
 
   constructor(private loadDataService: LoadDataService) { }
 
@@ -26,6 +26,10 @@ export class TableGroupComponent implements OnInit {
       this.allStatus = data;
       console.log(this.allStatus);
     });
+  }
+
+  setPageLength(a:number) {
+    this.pageEnd = this.pageStart + a;
   }
 
   filterData() {
