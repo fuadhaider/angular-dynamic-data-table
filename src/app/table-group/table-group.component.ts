@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 // import { MusicObject } from './music-object';
 // import { MusicData } from './music-data';
 import { LoadDataService } from './load-data.service';
+import { FilterDataService } from './filter-data.service';
 
 @Component({
   selector: 'app-table-group',
@@ -9,14 +11,22 @@ import { LoadDataService } from './load-data.service';
   styleUrls: ['./table-group.component.scss']
 })
 export class TableGroupComponent implements OnInit {
-  allStatus: any = [];
+  dataArray: any = [];
+  showData: any = [];
   query: string = "";
   pageLength: number = 5;
   pageStart: number = 0;
   pageEnd: number = 5;
   pageMax: number = 4;
 
-  constructor(private loadDataService: LoadDataService) { }
+  // messages: Message[];
+  // loading = false;
+  // total = 0;
+  // page = 1;
+  // limit = 20;
+
+  constructor(private loadDataService: LoadDataService,
+              private filterDataService: FilterDataService) { }
 
   ngOnInit() {
     this.getData();
@@ -24,8 +34,9 @@ export class TableGroupComponent implements OnInit {
 
   getData() {
     this.loadDataService.getUrlData().subscribe(data => {
-      this.allStatus = data;
-      console.log(this.allStatus);
+      this.dataArray = data;
+      this.showData = this.dataArray;
+      console.log(this.showData);
     });
   }
 
@@ -54,23 +65,23 @@ export class TableGroupComponent implements OnInit {
   }
 
   filterData() {
-    this.loadDataService.getUrlData().subscribe(data => {
-      this.allStatus = data;
+    // this.loadDataService.getUrlData().subscribe(data => {
+    //   this.allStatus = data;
 
-      this.allStatus = this.allStatus.filter(function(el){
+      this.showData = this.dataArray.filter(function(el){
         var result="";
           for(var key in el){
             result+= el[key];
           }
           return result.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
       }.bind(this));
-    });
+    // });
   }
 
   sortNumber() {
-    this.loadDataService.getUrlData().subscribe(data => {
-      this.allStatus = data;
-      this.allStatus.sort(function(a, b) {
+    // this.loadDataService.getUrlData().subscribe(data => {
+    //   this.allStatus = data;
+      this.showData = this.dataArray.sort(function(a, b) {
         if (a.id < b.id) {
           return -1;
         }
@@ -79,13 +90,13 @@ export class TableGroupComponent implements OnInit {
         }
         return 0;
       });
-    });
+    // });
   }
 
   sortAlbumId() {
-    this.loadDataService.getUrlData().subscribe(data => {
-      this.allStatus = data;
-      this.allStatus.sort(function(a, b) {
+    // this.loadDataService.getUrlData().subscribe(data => {
+    //   this.allStatus = data;
+      this.showData = this.dataArray.sort(function(a, b) {
         if (a.albumId < b.albumId) {
           return -1;
         }
@@ -94,13 +105,13 @@ export class TableGroupComponent implements OnInit {
         }
         return 0;
       });
-    });
+    // });
   }
 
   sortData() {
-    this.loadDataService.getUrlData().subscribe(data => {
-      this.allStatus = data;
-      this.allStatus.sort(function(a, b) {
+    // this.loadDataService.getUrlData().subscribe(data => {
+    //   this.allStatus = data;
+      this.showData = this.dataArray.sort(function(a, b) {
         var nameA = a.title.toUpperCase(); // ignore upper and lowercase
         var nameB = b.title.toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
@@ -111,13 +122,13 @@ export class TableGroupComponent implements OnInit {
         }
         return 0;
       });
-    });
+    // });
   }
 
   sortUrl() {
-    this.loadDataService.getUrlData().subscribe(data => {
-      this.allStatus = data;
-      this.allStatus.sort(function(a, b) {
+    // this.loadDataService.getUrlData().subscribe(data => {
+    //   this.allStatus = data;
+      this.showData = this.dataArray.sort(function(a, b) {
         var nameA = a.url.toUpperCase(); // ignore upper and lowercase
         var nameB = b.url.toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
@@ -128,7 +139,7 @@ export class TableGroupComponent implements OnInit {
         }
         return 0;
       });
-    });
+    // });
   }
 
 
