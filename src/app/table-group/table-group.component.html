@@ -1,16 +1,17 @@
 <p>
   table-group works!
 </p>
-<span>
+<div>
   <button (click)="setPageLength(5)">5</button>
   <button (click)="setPageLength(10)">10</button>
-  <button (click)="setPageLength(15)">25</button>
+  <button (click)="setPageLength(20)">20</button>
   <button (click)="sortAlbumId()">Sort Album</button>
   <button (click)="sortNumber()">Sort id</button>
   <button (click)="sortData()">Sort title</button>
   <button (click)="sortUrl()">Sort url</button>
   <input (keyup)=filterData() [(ngModel)]=query/>
-</span>
+  <input #pageInput (keyup.enter)="pageNumber(pageInput.value)">
+</div>
 
 <table>
   <thead>
@@ -23,24 +24,12 @@
       </tr>
     </thead>
     <tbody>
-      <!-- <tr> -->
-      <!-- <tr *ngFor = "let status of allStatus; let i=index;"> -->
-      <!-- <tr *ngFor = "let status of allStatus| slice:0:pageLength"> -->
-
       <tr *ngFor = "let status of allStatus| slice:pageStart:pageEnd">
-<!-- | slice: 0:pageLength -->
-        <!-- <div *ngIf= "i<5"> -->
-          <!-- <td *ngIf= "i<5">{{status.albumId}}</td>
-          <td *ngIf= "i<5">{{status.id}}</td>
-          <td *ngIf= "i<5">{{status.title}}</td>
-          <td *ngIf= "i<5">{{status.url}}</td>
-          <td *ngIf= "i<5"><img src="{{status.thumbnailUrl}}"></td> -->
           <td>{{status.albumId}}</td>
           <td>{{status.id}}</td>
           <td>{{status.title}}</td>
           <td>{{status.url}}</td>
           <td><img src="{{status.thumbnailUrl}}"></td>
-        <!-- </div> -->
       </tr>
     </tbody>
 </table>

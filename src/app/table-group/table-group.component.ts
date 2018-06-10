@@ -13,7 +13,8 @@ export class TableGroupComponent implements OnInit {
   query: string = "";
   pageLength: number = 5;
   pageStart: number = 0;
-  pageEnd: number;
+  pageEnd: number = 5;
+  pageMax: number = 4;
 
   constructor(private loadDataService: LoadDataService) { }
 
@@ -29,7 +30,27 @@ export class TableGroupComponent implements OnInit {
   }
 
   setPageLength(a:number) {
-    this.pageEnd = this.pageStart + a;
+    this.pageLength = a;
+    this.pageEnd = this.pageStart + this.pageLength;
+  }
+
+  pageNumber(a:number) {
+    if(a==1) {
+      this.pageStart = 0;
+      this.pageEnd = this.pageStart + this.pageLength;
+    }
+    if (a==2) {
+      this.pageStart = this.pageLength;
+      this.pageEnd = this.pageStart + this.pageLength;
+    }
+    if (a==3) {
+      this.pageStart = this.pageLength*2;
+      this.pageEnd = this.pageStart + this.pageLength;
+    }
+    if (a==4) {
+      this.pageStart = this.pageLength*3;
+      this.pageEnd = this.pageStart + this.pageLength;
+    }
   }
 
   filterData() {
