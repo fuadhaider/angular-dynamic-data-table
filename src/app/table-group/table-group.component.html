@@ -1,15 +1,21 @@
-<p>
-  table-group works!
-</p>
+<span>
+  Select page Length
+  <button (click)="setPageLength(5)" [disabled]="pageLength==5">5</button>
+  <button (click)="setPageLength(10)" [disabled]="pageLength==10">10</button>
+  <button (click)="setPageLength(20)" [disabled]="pageLength==20">20</button>
+</span>
+
+<span>
+  Enter filter query
+  <input (keyup)=filterData() [(ngModel)]=query/>
+</span>
+
 <div>
-  <button (click)="setPageLength(5)">5</button>
-  <button (click)="setPageLength(10)">10</button>
-  <button (click)="setPageLength(20)">20</button>
+
   <button (click)="sortAlbumId()">Sort Album</button>
   <button (click)="sortNumber()">Sort id</button>
   <button (click)="sortData()">Sort title</button>
   <button (click)="sortUrl()">Sort url</button>
-  <input (keyup)=filterData() [(ngModel)]=query/>
 </div>
 
 <div>
