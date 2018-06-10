@@ -19,6 +19,8 @@ export class TableGroupComponent implements OnInit {
   pageEnd: number = 5;
   pageNumber: number;
   itemNumber: number;
+  totalPageNumber: number = 1;
+  currentPageNumber: number;
 
   // pageMax: number = 4;
 
@@ -35,28 +37,50 @@ export class TableGroupComponent implements OnInit {
     this.getData();
   }
 
+  // ngOnChanges() {
+  //   this.getTotalPage();
+  //
+  // }
+
   getData() {
     this.loadDataService.getUrlData().subscribe(data => {
       this.dataArray = data;
       this.showData = this.dataArray;
       console.log(this.showData);
+      this.getTotalPage();
+      this.getCurrentPage();
     });
   }
 
   setPageLength(a:number) {
     this.pageLength = a;
     this.pageEnd = this.pageStart + this.pageLength;
+    // this.getCurrentPage();
+  }
+
+  getTotalPage() {
+    this.totalPageNumber = Math.ceil(this.showData.length / this.pageLength);
+  }
+
+  getCurrentPage() {
+    this.currentPageNumber = this.pageStart / this.pageLength + 1;
   }
 
 
   goPreviousPage() {
-    this.pageStart = this.pageStart - this.pageLength;
-    this.pageEnd = this.pageEnd - this.pageLength;
+    if(this.pageStart <= this.pageLength) {
+      this.pageStart = 0
+    } else {
+      this.pageStart = this.pageStart - this.pageLength;
+      this.pageEnd = this.pageEnd - this.pageLength;
+    }
+    this.getCurrentPage();
   }
 
   goNextPage() {
     this.pageStart = this.pageStart + this.pageLength;
     this.pageEnd = this.pageEnd + this.pageLength;
+    this.getCurrentPage();
   }
 
   getPageNumber(a:number) {
@@ -89,6 +113,9 @@ export class TableGroupComponent implements OnInit {
           }
           return result.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
       }.bind(this));
+      this.getTotalPage();
+      this.getCurrentPage();
+      // console.log(this.showData);
     // });
   }
 
