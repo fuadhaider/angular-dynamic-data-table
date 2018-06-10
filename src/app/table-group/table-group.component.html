@@ -10,30 +10,22 @@
   <button (click)="sortData()">Sort title</button>
   <button (click)="sortUrl()">Sort url</button>
   <input (keyup)=filterData() [(ngModel)]=query/>
-  <!-- <input #pageInput (keyup.enter)="getPageNumber(pageInput.value)"> -->
 </div>
 
 <div>
-  <button (click)="goPreviousPage()">Previous</button>
-  {{currentPageNumber}}
-  <button (click)="goNextPage()">Next</button>
-  Total {{totalPageNumber}} Pages
+  On page number {{currentPageNumber}} of {{totalPageNumber}} Pages. Go to
+  <button (click)="goPreviousPage()" [disabled]="pageStart==0">Previous</button>
+  <button (click)="goNextPage()" [disabled]="currentPageNumber==totalPageNumber">Next</button>
+  Page or Enter page number
+  <input #pageInput (keyup.enter)="getPageNumber(pageInput.value)"
+  max="" min="">
+  <button (click)="getPageNumber(pageInput.value)">Enter</button>
 </div>
-
-<!-- <my-pagination
-  (goPage)="goToPage($event)"
-  (goNext)="onNext()"
-  (goPrev)="onPrev()"
-  [pagesToShow]="3"
-  [page]="page"
-  [perPage]="limit"
-  [count]="total">
-</my-pagination> -->
 
 <table>
   <thead>
       <tr>
-        <th>Album ID</th>
+        <th>Album</th>
         <th>ID</th>
         <th>Title</th>
         <th>URL</th>

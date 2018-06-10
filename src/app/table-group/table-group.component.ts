@@ -55,7 +55,8 @@ export class TableGroupComponent implements OnInit {
   setPageLength(a:number) {
     this.pageLength = a;
     this.pageEnd = this.pageStart + this.pageLength;
-    // this.getCurrentPage();
+    this.getTotalPage();
+    this.getCurrentPage();
   }
 
   getTotalPage() {
@@ -63,7 +64,7 @@ export class TableGroupComponent implements OnInit {
   }
 
   getCurrentPage() {
-    this.currentPageNumber = this.pageStart / this.pageLength + 1;
+    this.currentPageNumber = Math.floor(this.pageStart / this.pageLength) + 1;
   }
 
 
@@ -87,24 +88,29 @@ export class TableGroupComponent implements OnInit {
     if(a==1) {
       this.pageStart = 0;
       this.pageEnd = this.pageStart + this.pageLength;
-    }
-    if (a==2) {
-      this.pageStart = this.pageLength;
+    } else {
+      this.pageStart = this.pageLength * (a-1);
       this.pageEnd = this.pageStart + this.pageLength;
     }
-    if (a==3) {
-      this.pageStart = this.pageLength*2;
-      this.pageEnd = this.pageStart + this.pageLength;
-    }
-    if (a==4) {
-      this.pageStart = this.pageLength*3;
-      this.pageEnd = this.pageStart + this.pageLength;
-    }
+    // if (a==2) {
+    //   this.pageStart = this.pageLength;
+    //   this.pageEnd = this.pageStart + this.pageLength;
+    // }
+    // if (a==3) {
+    //   this.pageStart = this.pageLength*2;
+    //   this.pageEnd = this.pageStart + this.pageLength;
+    // }
+    // if (a==4) {
+    //   this.pageStart = this.pageLength*3;
+    //   this.pageEnd = this.pageStart + this.pageLength;
+    // }
   }
 
   filterData() {
     // this.loadDataService.getUrlData().subscribe(data => {
     //   this.allStatus = data;
+    this.pageStart = 0;
+    this.pageEnd = this.pageLength;
 
       this.showData = this.dataArray.filter(function(el){
         var result="";
