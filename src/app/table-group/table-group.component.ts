@@ -125,7 +125,7 @@ export class TableGroupComponent implements OnInit {
     // });
   }
 
-  sortNumber() {
+  sortId() {
     // this.loadDataService.getUrlData().subscribe(data => {
     //   this.allStatus = data;
       this.showData = this.dataArray.sort(function(a, b) {
@@ -140,7 +140,7 @@ export class TableGroupComponent implements OnInit {
     // });
   }
 
-  sortAlbumId() {
+  sortAlbum() {
     // this.loadDataService.getUrlData().subscribe(data => {
     //   this.allStatus = data;
       this.showData = this.dataArray.sort(function(a, b) {
@@ -155,7 +155,7 @@ export class TableGroupComponent implements OnInit {
     // });
   }
 
-  sortData() {
+  sortTitle() {
     // this.loadDataService.getUrlData().subscribe(data => {
     //   this.allStatus = data;
       this.showData = this.dataArray.sort(function(a, b) {
