@@ -31,10 +31,10 @@
 <table>
   <thead>
       <tr>
-        <th sortable-column="album">Album</th>
-        <th sortable-column="id">ID</th>
-        <th sortable-column="title">Title</th>
-        <th sortable-column="url">URL</th>
+        <th (click)="sortAlbumId()" sortable-column="album">Album</th>
+        <th (click)="sortNumber()" sortable-column="id">ID</th>
+        <th (click)="sortData()" sortable-column="title">Title</th>
+        <th (click)="sortUrl()" sortable-column="url">URL</th>
         <th>Image</th>
       </tr>
     </thead>
