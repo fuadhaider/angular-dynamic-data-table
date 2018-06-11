@@ -126,6 +126,54 @@ export class TableGroupComponent implements OnInit {
     // });
   }
 
+  sortAlbum() {
+    // this.loadDataService.getUrlData().subscribe(data => {
+    //   this.allStatus = data;
+    this.sortService.columnSorted$.subscribe(event => {
+        // reset this column's sort direction to hide the sort icons
+        if (event.sortDirection == '') {
+          // this.showData = this.dataArray.sort(function(a, b) {
+          this.showData = this.showData.sort(function(a, b) {
+
+            // if (a.albumId < b.albumId) {
+            //   return 1;
+            // }
+            // if (a.albumId > b.albumId) {
+            //   return -1;
+            // }
+            return a.albumId - b.albumId;
+          });
+        }
+        else if (event.sortDirection == 'desc') {
+          // this.showData = this.dataArray.sort(function(a, b) {
+          this.showData = this.showData.sort(function(a, b) {
+
+            // if (a.albumId < b.albumId) {
+            //   return 1;
+            // }
+            // if (a.albumId > b.albumId) {
+            //   return -1;
+            // }
+            return b.albumId - a.albumId;
+          });
+        }
+        else if (event.sortDirection == 'asc') {
+          // this.showData = this.dataArray.sort(function(a, b) {
+          this.showData = this.showData.sort(function(a, b) {
+
+            // if (a.albumId < b.albumId) {
+            //   return -1;
+            // }
+            // if (a.albumId > b.albumId) {
+            //   return 1;
+            // }
+            return a.albumId - b.albumId;
+          });
+        }
+      });
+
+    // });
+  }
   sortId() {
     // this.loadDataService.getUrlData().subscribe(data => {
     //   this.allStatus = data;
@@ -134,39 +182,87 @@ export class TableGroupComponent implements OnInit {
     this.sortService.columnSorted$.subscribe(event => {
         // reset this column's sort direction to hide the sort icons
         if (event.sortDirection == '') {
-          this.showData = this.dataArray.sort(function(a, b) {
-            if (a.id < b.id) {
-              return -1;
-            }
-            if (a.id > b.id) {
-              return 1;
-            }
-            return 0;
+          // this.showData = this.dataArray.sort(function(a, b) {
+          this.showData = this.showData.sort(function(a, b) {
+
+            // if (a.id < b.id) {
+            //   return -1;
+            // }
+            // if (a.id > b.id) {
+            //   return 1;
+            // }
+            return a.id - b.id;
           });
         }
         else if (event.sortDirection == 'desc') {
-          this.showData = this.dataArray.sort(function(a, b) {
-            if (a.id < b.id) {
-              return 1;
-            }
-            if (a.id > b.id) {
-              return -1;
-            }
-            return 0;
+          // this.showData = this.dataArray.sort(function(a, b) {
+          this.showData = this.showData.sort(function(a, b) {
+
+            // if (a.id < b.id) {
+            //   return 1;
+            // }
+            // if (a.id > b.id) {
+            //   return -1;
+            // }
+            return b.id - a.id;
           });
         }
         else if (event.sortDirection == 'asc') {
-          this.showData = this.dataArray.sort(function(a, b) {
-            if (a.id < b.id) {
-              return -1;
-            }
-            if (a.id > b.id) {
-              return 1;
-            }
-            return 0;
+          // this.showData = this.dataArray.sort(function(a, b) {
+          this.showData = this.showData.sort(function(a, b) {
+
+            // if (a.id < b.id) {
+            //   return -1;
+            // }
+            // if (a.id > b.id) {
+            //   return 1;
+            // }
+            return a.id - b.id;
           });
         }
     });
+
+  // sortId() {
+  //   // this.loadDataService.getUrlData().subscribe(data => {
+  //   //   this.allStatus = data;
+  //   // subscribe to sort changes so we can react when other columns are sorted
+  //   // this.columnSortedSubscription =
+  //   this.sortService.columnSorted$.subscribe(event => {
+  //       // reset this column's sort direction to hide the sort icons
+  //       if (event.sortDirection == '') {
+  //         this.showData = this.dataArray.sort(function(a, b) {
+  //           if (a.id < b.id) {
+  //             return -1;
+  //           }
+  //           if (a.id > b.id) {
+  //             return 1;
+  //           }
+  //           return 0;
+  //         });
+  //       }
+  //       else if (event.sortDirection == 'desc') {
+  //         this.showData = this.dataArray.sort(function(a, b) {
+  //           if (a.id < b.id) {
+  //             return 1;
+  //           }
+  //           if (a.id > b.id) {
+  //             return -1;
+  //           }
+  //           return 0;
+  //         });
+  //       }
+  //       else if (event.sortDirection == 'asc') {
+  //         this.showData = this.dataArray.sort(function(a, b) {
+  //           if (a.id < b.id) {
+  //             return -1;
+  //           }
+  //           if (a.id > b.id) {
+  //             return 1;
+  //           }
+  //           return 0;
+  //         });
+  //       }
+  //   });
       // this.showData = this.dataArray.sort(function(a, b) {
       //   if (a.id < b.id) {
       //     return -1;
@@ -179,48 +275,6 @@ export class TableGroupComponent implements OnInit {
     // });
   }
 
-  sortAlbum() {
-    // this.loadDataService.getUrlData().subscribe(data => {
-    //   this.allStatus = data;
-    this.sortService.columnSorted$.subscribe(event => {
-        // reset this column's sort direction to hide the sort icons
-        if (event.sortDirection == '') {
-          this.showData = this.dataArray.sort(function(a, b) {
-            if (a.albumId < b.albumId) {
-              return 1;
-            }
-            if (a.albumId > b.albumId) {
-              return -1;
-            }
-            return 0;
-          });
-        }
-        else if (event.sortDirection == 'desc') {
-          this.showData = this.dataArray.sort(function(a, b) {
-            if (a.albumId < b.albumId) {
-              return 1;
-            }
-            if (a.albumId > b.albumId) {
-              return -1;
-            }
-            return 0;
-          });
-        }
-        else if (event.sortDirection == 'asc') {
-          this.showData = this.dataArray.sort(function(a, b) {
-            if (a.albumId < b.albumId) {
-              return -1;
-            }
-            if (a.albumId > b.albumId) {
-              return 1;
-            }
-            return 0;
-          });
-        }
-      });
-
-    // });
-  }
 
   sortTitle() {
     // this.loadDataService.getUrlData().subscribe(data => {
@@ -228,7 +282,9 @@ export class TableGroupComponent implements OnInit {
     this.sortService.columnSorted$.subscribe(event => {
         // reset this column's sort direction to hide the sort icons
         if (event.sortDirection == '') {
-          this.showData = this.dataArray.sort(function(a, b) {
+          // this.showData = this.dataArray.sort(function(a, b) {
+          this.showData = this.showData.sort(function(a, b) {
+
             var nameA = a.title.toUpperCase(); // ignore upper and lowercase
             var nameB = b.title.toUpperCase(); // ignore upper and lowercase
             if (nameA < nameB) {
@@ -241,7 +297,9 @@ export class TableGroupComponent implements OnInit {
           });
         }
         else if (event.sortDirection == 'desc') {
-          this.showData = this.dataArray.sort(function(a, b) {
+          // this.showData = this.dataArray.sort(function(a, b) {
+          this.showData = this.showData.sort(function(a, b) {
+
             var nameA = a.title.toUpperCase(); // ignore upper and lowercase
             var nameB = b.title.toUpperCase(); // ignore upper and lowercase
             if (nameA < nameB) {
@@ -254,7 +312,9 @@ export class TableGroupComponent implements OnInit {
           });
         }
         else if (event.sortDirection == 'asc') {
-          this.showData = this.dataArray.sort(function(a, b) {
+          // this.showData = this.dataArray.sort(function(a, b) {
+          this.showData = this.showData.sort(function(a, b) {
+
             var nameA = a.title.toUpperCase(); // ignore upper and lowercase
             var nameB = b.title.toUpperCase(); // ignore upper and lowercase
             if (nameA < nameB) {
@@ -277,7 +337,9 @@ export class TableGroupComponent implements OnInit {
     this.sortService.columnSorted$.subscribe(event => {
         // reset this column's sort direction to hide the sort icons
         if (event.sortDirection == '') {
-          this.showData = this.dataArray.sort(function(a, b) {
+          // this.showData = this.dataArray.sort(function(a, b) {
+          this.showData = this.showData.sort(function(a, b) {
+
             var nameA = a.url.toUpperCase(); // ignore upper and lowercase
             var nameB = b.url.toUpperCase(); // ignore upper and lowercase
             if (nameA < nameB) {
@@ -290,7 +352,9 @@ export class TableGroupComponent implements OnInit {
           });
         }
         else if (event.sortDirection == 'desc') {
-          this.showData = this.dataArray.sort(function(a, b) {
+          // this.showData = this.dataArray.sort(function(a, b) {
+          this.showData = this.showData.sort(function(a, b) {
+
             var nameA = a.url.toUpperCase(); // ignore upper and lowercase
             var nameB = b.url.toUpperCase(); // ignore upper and lowercase
             if (nameA < nameB) {
@@ -303,7 +367,9 @@ export class TableGroupComponent implements OnInit {
           });
         }
         else if (event.sortDirection == 'asc') {
-          this.showData = this.dataArray.sort(function(a, b) {
+          // this.showData = this.dataArray.sort(function(a, b) {
+          this.showData = this.showData.sort(function(a, b) {
+
             var nameA = a.url.toUpperCase(); // ignore upper and lowercase
             var nameB = b.url.toUpperCase(); // ignore upper and lowercase
             if (nameA < nameB) {
