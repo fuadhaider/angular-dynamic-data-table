@@ -1,47 +1,65 @@
-div, span, table {
+div, table {
   font-family: arial;
   color: darkslategrey;
-}
-#filter {
-  float: right;
 }
 div {
   margin: auto;
   width: 80%;
   text-align: center;
 }
+#menu-table {
+  margin: auto;
+  width: 95%;
+  #page-length, #filter {
+    text-align: left;
+  }
+  #page-nav, #page-input {
+    text-align: right;
+  }
+}
 
-table, th, td{
+@mixin table-border{
    border: 1px solid black;
 }
-table {
+#data-table {
     margin: auto;
+    @include table-border;
     border-collapse: collapse;
     width: 95%;
     thead {
-      #albumHeader {
-        width: 10%;
-      }
-      #idHeader {
-        width: 5%;
-      }
-      #titleHeader, #urlHeader {
-        width: 35%;
-      }
-      #imageHeader {
-        width: 10%;
-      }
       tr {
         height: 50px;
+        th {
+          @include table-border;
+        }
+        #album-header {
+          width: 10%;
+        }
+        #id-header {
+          width: 5%;
+        }
+        #title-header, #url-header {
+          width: 35%;
+        }
+        #image-header {
+          width: 10%;
+        }
       }
     }
-    td {
-      text-align: center;
+    tbody{
+      tr {
+        @include table-border;
+        td {
+          @include table-border;
+          text-align: center;
+          img {
+            width: 70%;
+          }
+        }
+        .url-data {
+          font-size: 2vw;;
+        }
+      }
     }
-    img {
-      width: 70%;
-    }
-    .urlData {
-      font-size: 2vw;;
-    }
+
 }

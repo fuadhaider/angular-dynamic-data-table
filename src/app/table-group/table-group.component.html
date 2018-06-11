@@ -1,40 +1,44 @@
-<span>
-  Select page Length
-  <button (click)="setPageLength(5)" [disabled]="pageLength==5">5</button>
-  <button (click)="setPageLength(10)" [disabled]="pageLength==10">10</button>
-  <button (click)="setPageLength(20)" [disabled]="pageLength==20">20</button>
-</span>
+<table id="menu-table">
+  <tbody>
+    <tr>
+      <td id="page-lenth">
+          Items
+          <button (click)="setPageLength(50)" [disabled]="pageLength==50">50</button>
+          <button (click)="setPageLength(100)" [disabled]="pageLength==100">100</button>
+          <button (click)="setPageLength(1000)" [disabled]="pageLength==1000">1000</button>
+      </td>
+      <td id="page-nav">
+          Go to
+          <button (click)="goPreviousPage()" [disabled]="pageStart==0">Previous</button>
+          <button (click)="goNextPage()"
+          [disabled]="currentPageNumber==totalPageNumber">Next</button>
+      </td>
+    </tr>
+    <tr>
+      <td id="filter">
+          Filter
+          <input (keyup)=filterData() [(ngModel)]=query/>
+      </td>
+      <td id="page-input">
+          Page number
+          <input #pageInput (keyup.enter)="getPageNumber(pageInput.value)"
+          max="" min="">
+          <button (click)="getPageNumber(pageInput.value)">Enter</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-<span id="filter">
-  Enter filter query
-  <input (keyup)=filterData() [(ngModel)]=query/>
-</span>
-<!--
-<div>
-  <button #albumIdRef (click)="sortAll(albumIdRef.value)" value="albumId">Sort Album</button>
-  <button (click)="sortNumber()">Sort id</button>
-  <button (click)="sortData()">Sort title</button>
-  <button (click)="sortUrl()">Sort url</button>
-</div> -->
+<div>On page number {{currentPageNumber}} of {{totalPageNumber}} Pages</div>
 
-<div>
-  On page number {{currentPageNumber}} of {{totalPageNumber}} Pages. Go to
-  <button (click)="goPreviousPage()" [disabled]="pageStart==0">Previous</button>
-  <button (click)="goNextPage()" [disabled]="currentPageNumber==totalPageNumber">Next</button>
-  Page or Enter page number
-  <input #pageInput (keyup.enter)="getPageNumber(pageInput.value)"
-  max="" min="">
-  <button (click)="getPageNumber(pageInput.value)">Enter</button>
-</div>
-
-<table>
+<table id="data-table">
   <thead>
       <tr>
-        <th id="albumHeader" (click)="sortAlbum()" sortable-column="album">Album</th>
-        <th id="idHeader" (click)="sortId()" sortable-column="id">ID</th>
-        <th id="titleHeader" (click)="sortTitle()" sortable-column="title">Title</th>
+        <th id="album-header" (click)="sortAlbum()" sortable-column="album">Album</th>
+        <th id="id-header" (click)="sortId()" sortable-column="id">ID</th>
+        <th id="title-header" (click)="sortTitle()" sortable-column="title">Title</th>
         <th id="urlHeader" (click)="sortUrl()" sortable-column="url">URL</th>
-        <th id="imageHeader">Image</th>
+        <th id="image-header">Image</th>
       </tr>
     </thead>
     <tbody>
@@ -42,7 +46,7 @@
         <td>{{data.albumId}}</td>
         <td>{{data.id}}</td>
         <td>{{data.title}}</td>
-        <td class="urlData">{{data.url}}</td>
+        <td class="url-data">{{data.url}}</td>
         <td><img src="{{data.thumbnailUrl}}"></td>
       </tr>
     </tbody>
