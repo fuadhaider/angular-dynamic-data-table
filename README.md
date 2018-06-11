@@ -2,6 +2,18 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.5.
 
+# Manual
+This is a Data Table project.
+Open the site.
+Click 'Table' to load the table.
+Click 'items' buttons to show page length.
+Type in 'Filter' filed to filter entries.
+Click headers to sort in ascending or descending order.
+Click 'Next/Previous' for consecutive pages.
+Enter page number to jump to a specific page.
+Click 'assumption' for that page.
+Click 'Future Work' for that page.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
