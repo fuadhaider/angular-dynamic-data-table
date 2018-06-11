@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 // import { MusicObject } from './music-object';
 // import { MusicData } from './music-data';
 import { LoadDataService } from './load-data.service';
-import { FilterDataService } from './filter-data.service';
+// import { FilterDataService } from './filter-data.service';
+import { SortService } from './sort.service';
 
 @Component({
   selector: 'app-table-group',
@@ -31,7 +32,7 @@ export class TableGroupComponent implements OnInit {
   // limit = 20;
 
   constructor(private loadDataService: LoadDataService,
-              private filterDataService: FilterDataService) { }
+              private sortService: SortService) { }
 
   ngOnInit() {
     this.getData();
@@ -128,64 +129,194 @@ export class TableGroupComponent implements OnInit {
   sortId() {
     // this.loadDataService.getUrlData().subscribe(data => {
     //   this.allStatus = data;
-      this.showData = this.dataArray.sort(function(a, b) {
-        if (a.id < b.id) {
-          return -1;
+    // subscribe to sort changes so we can react when other columns are sorted
+    // this.columnSortedSubscription =
+    this.sortService.columnSorted$.subscribe(event => {
+        // reset this column's sort direction to hide the sort icons
+        if (event.sortDirection == '') {
+          this.showData = this.dataArray.sort(function(a, b) {
+            if (a.id < b.id) {
+              return -1;
+            }
+            if (a.id > b.id) {
+              return 1;
+            }
+            return 0;
+          });
         }
-        if (a.id > b.id) {
-          return 1;
+        else if (event.sortDirection == 'desc') {
+          this.showData = this.dataArray.sort(function(a, b) {
+            if (a.id < b.id) {
+              return 1;
+            }
+            if (a.id > b.id) {
+              return -1;
+            }
+            return 0;
+          });
         }
-        return 0;
-      });
+        else if (event.sortDirection == 'asc') {
+          this.showData = this.dataArray.sort(function(a, b) {
+            if (a.id < b.id) {
+              return -1;
+            }
+            if (a.id > b.id) {
+              return 1;
+            }
+            return 0;
+          });
+        }
+    });
+      // this.showData = this.dataArray.sort(function(a, b) {
+      //   if (a.id < b.id) {
+      //     return -1;
+      //   }
+      //   if (a.id > b.id) {
+      //     return 1;
+      //   }
+      //   return 0;
+      // });
     // });
   }
 
   sortAlbum() {
     // this.loadDataService.getUrlData().subscribe(data => {
     //   this.allStatus = data;
-      this.showData = this.dataArray.sort(function(a, b) {
-        if (a.albumId < b.albumId) {
-          return -1;
+    this.sortService.columnSorted$.subscribe(event => {
+        // reset this column's sort direction to hide the sort icons
+        if (event.sortDirection == '') {
+          this.showData = this.dataArray.sort(function(a, b) {
+            if (a.albumId < b.albumId) {
+              return 1;
+            }
+            if (a.albumId > b.albumId) {
+              return -1;
+            }
+            return 0;
+          });
         }
-        if (a.albumId > b.albumId) {
-          return 1;
+        else if (event.sortDirection == 'desc') {
+          this.showData = this.dataArray.sort(function(a, b) {
+            if (a.albumId < b.albumId) {
+              return 1;
+            }
+            if (a.albumId > b.albumId) {
+              return -1;
+            }
+            return 0;
+          });
         }
-        return 0;
+        else if (event.sortDirection == 'asc') {
+          this.showData = this.dataArray.sort(function(a, b) {
+            if (a.albumId < b.albumId) {
+              return -1;
+            }
+            if (a.albumId > b.albumId) {
+              return 1;
+            }
+            return 0;
+          });
+        }
       });
+
     // });
   }
 
   sortTitle() {
     // this.loadDataService.getUrlData().subscribe(data => {
     //   this.allStatus = data;
-      this.showData = this.dataArray.sort(function(a, b) {
-        var nameA = a.title.toUpperCase(); // ignore upper and lowercase
-        var nameB = b.title.toUpperCase(); // ignore upper and lowercase
-        if (nameA < nameB) {
-          return -1;
+    this.sortService.columnSorted$.subscribe(event => {
+        // reset this column's sort direction to hide the sort icons
+        if (event.sortDirection == '') {
+          this.showData = this.dataArray.sort(function(a, b) {
+            var nameA = a.title.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.title.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return 1;
+            }
+            if (nameA > nameB) {
+              return -1;
+            }
+            return 0;
+          });
         }
-        if (nameA > nameB) {
-          return 1;
+        else if (event.sortDirection == 'desc') {
+          this.showData = this.dataArray.sort(function(a, b) {
+            var nameA = a.title.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.title.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return 1;
+            }
+            if (nameA > nameB) {
+              return -1;
+            }
+            return 0;
+          });
         }
-        return 0;
+        else if (event.sortDirection == 'asc') {
+          this.showData = this.dataArray.sort(function(a, b) {
+            var nameA = a.title.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.title.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+            return 0;
+          });
+        }
       });
+
     // });
   }
 
   sortUrl() {
     // this.loadDataService.getUrlData().subscribe(data => {
     //   this.allStatus = data;
-      this.showData = this.dataArray.sort(function(a, b) {
-        var nameA = a.url.toUpperCase(); // ignore upper and lowercase
-        var nameB = b.url.toUpperCase(); // ignore upper and lowercase
-        if (nameA < nameB) {
-          return -1;
+    this.sortService.columnSorted$.subscribe(event => {
+        // reset this column's sort direction to hide the sort icons
+        if (event.sortDirection == '') {
+          this.showData = this.dataArray.sort(function(a, b) {
+            var nameA = a.url.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.url.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return 1;
+            }
+            if (nameA > nameB) {
+              return -1;
+            }
+            return 0;
+          });
         }
-        if (nameA > nameB) {
-          return 1;
+        else if (event.sortDirection == 'desc') {
+          this.showData = this.dataArray.sort(function(a, b) {
+            var nameA = a.url.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.url.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return 1;
+            }
+            if (nameA > nameB) {
+              return -1;
+            }
+            return 0;
+          });
         }
-        return 0;
+        else if (event.sortDirection == 'asc') {
+          this.showData = this.dataArray.sort(function(a, b) {
+            var nameA = a.url.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.url.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+            return 0;
+          });
+        }
       });
+
     // });
   }
 
