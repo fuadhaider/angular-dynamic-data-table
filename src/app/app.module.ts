@@ -5,19 +5,25 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TableGroupComponent } from './table-group/table-group.component';
+import { SortableColumnComponent } from './table-group/sortable-column/sortable-column.component';
 import { LoadDataService } from './table-group/load-data.service';
+import { SortService } from './table-group/sort.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableGroupComponent
+    TableGroupComponent,
+    SortableColumnComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     HttpClientModule
   ],
-  providers: [LoadDataService],
+  providers: [
+    LoadDataService,
+    SortService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
