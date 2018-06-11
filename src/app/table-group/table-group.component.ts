@@ -30,7 +30,6 @@ export class TableGroupComponent implements OnInit {
     this.loadDataService.getUrlData().subscribe(data => {
       this.dataArray = data;
       this.showData = this.dataArray;
-      console.log(this.showData);
       this.getTotalPage();
       this.getCurrentPage();
     });

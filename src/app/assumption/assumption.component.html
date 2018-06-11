@@ -3,17 +3,51 @@
 <p>Technical Stack</p>
 <ul>
   <li>Angular 6</li>
-  <li>DataTables</li>
 </ul>
 
 <p>Development</p>
 <ul>
-  <li>Used the latest version of npm, Angular and DataTables</li>
-  <li>Integrated DataTables with the project</li>
-  <li>Created table framework on the template with DataTable directive</li>
-  <li>DataTable options and trigger are attached to tempalte table with property
-    binding</li>
+  <li>Used the latest version of npm, Angular</li>
+  <li>No external Libraries</li>
+</ul>
+
+<p>Design</p>
+<ul>
+  <li>Fully Responsive e.g. mobile</li>
+  <li>Minimal vanilla flavoured theme</li>
+</ul>
+
+<p>UX/UI</p>
+<ul>
+  <li>Number of rows options are buttons rather than dropdown</li>
+  <li>Page navigation previous next</li>
+  <li>Filter triggers for every key stroke</li>
+  <li>Input field for jump navigation rather than list of few page links,
+     ideal for large number of pages</li>
+  <li>Buttons disable as per usage e.g. previous button is disabled on
+    first page</li>
+</ul>
+
+<p>Features</p>
+<ul>
+  <li>Current and Total page number is fully reactive, even for filtered items</li>
+  <li>Table rows built in segments for fast loading</li>
+  <li>Clicking headers can sort columns by ascending and descending order</li>
+  <li>Filters by consecutive characters</li>
+  <li>Album 2 Id 34 can be filtered by entering 234</li>
+  <li>Setting item number or sort do not refresh the table to the beginning,
+    e.g. if a user is on page 30 on item view 100 per page, changing to 50 per
+    page will not take the user back to the beginning, table will reorganised
+    accordingly in the background, user will stay on the same table segment</li>
+</ul>
+
+<p>Under the bonnet</p>
+<ul>
+  <li>Single data fetch from server</li>
+  <li>Data manipulation do not call server, fully on client side</li>
   <li>A service loads JSON file from url and sends it to component</li>
   <li>Component subscribes JSON data show it in a table</li>
-  <li>Component also decorates the table and its options</li>
+  <li>Component also decorates and control the table and its options</li>
+  <li>Service and Components are destroyed to avoid app running in the background
+    e.g. memory leaks</li>
 </ul>

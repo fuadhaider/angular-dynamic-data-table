@@ -22,7 +22,8 @@
       <td id="page-input">
           Page number
           <input #pageInput (keyup.enter)="getPageNumber(pageInput.value)"
-          max="" min="">
+
+          placeholder="1 to {{totalPageNumber}}">
           <button (click)="getPageNumber(pageInput.value)">Enter</button>
       </td>
     </tr>
