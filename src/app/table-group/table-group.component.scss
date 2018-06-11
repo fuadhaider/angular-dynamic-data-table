@@ -1,0 +1,47 @@
+div, span, table {
+  font-family: arial;
+  color: darkslategrey;
+}
+#filter {
+  float: right;
+}
+div {
+  margin: auto;
+  width: 80%;
+  text-align: center;
+}
+
+table, th, td{
+   border: 1px solid black;
+}
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 95%;
+    thead {
+      #albumHeader {
+        width: 10%;
+      }
+      #idHeader {
+        width: 5%;
+      }
+      #titleHeader, #urlHeader {
+        width: 35%;
+      }
+      #imageHeader {
+        width: 10%;
+      }
+      tr {
+        height: 50px;
+      }
+    }
+    td {
+      text-align: center;
+    }
+    img {
+      width: 70%;
+    }
+    .urlData {
+      font-size: 2vw;;
+    }
+}

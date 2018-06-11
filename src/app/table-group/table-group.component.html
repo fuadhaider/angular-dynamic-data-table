@@ -5,7 +5,7 @@
   <button (click)="setPageLength(20)" [disabled]="pageLength==20">20</button>
 </span>
 
-<span>
+<span id="filter">
   Enter filter query
   <input (keyup)=filterData() [(ngModel)]=query/>
 </span>
@@ -30,11 +30,11 @@
 <table>
   <thead>
       <tr>
-        <th (click)="sortAlbum()" sortable-column="album">Album</th>
-        <th (click)="sortId()" sortable-column="id">ID</th>
-        <th (click)="sortTitle()" sortable-column="title">Title</th>
-        <th (click)="sortUrl()" sortable-column="url">URL</th>
-        <th>Image</th>
+        <th id="albumHeader" (click)="sortAlbum()" sortable-column="album">Album</th>
+        <th id="idHeader" (click)="sortId()" sortable-column="id">ID</th>
+        <th id="titleHeader" (click)="sortTitle()" sortable-column="title">Title</th>
+        <th id="urlHeader" (click)="sortUrl()" sortable-column="url">URL</th>
+        <th id="imageHeader">Image</th>
       </tr>
     </thead>
     <tbody>
@@ -42,7 +42,7 @@
         <td>{{data.albumId}}</td>
         <td>{{data.id}}</td>
         <td>{{data.title}}</td>
-        <td>{{data.url}}</td>
+        <td class="urlData">{{data.url}}</td>
         <td><img src="{{data.thumbnailUrl}}"></td>
       </tr>
     </tbody>
