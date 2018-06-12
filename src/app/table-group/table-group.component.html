@@ -35,10 +35,13 @@
 <table id="data-table">
   <thead>
       <tr>
-        <th id="album-header" sortable-column="album" (click)="sortAlbum()">Album</th>
-        <th id="id-header" sortable-column="id" (click)="sortId()">ID</th>
-        <th id="title-header" sortable-column="title" (click)="sortTitle()">Title</th>
-        <th id="urlHeader" (click)="sortUrl()" sortable-column="url">URL</th>
+        <th id="album-header" sortable-column="album">Album</th>
+        <th id="id-header" sortable-column="id">ID</th>
+        <!-- (click)="sortId()" -->
+        <th id="title-header" sortable-column="title">Title</th>
+          <!-- (click)="sortTitle()"> -->
+        <th id="urlHeader" sortable-column="url">URL</th>
+        <!-- (click)="sortUrl()" -->
         <th id="image-header">Image</th>
       </tr>
     </thead>
