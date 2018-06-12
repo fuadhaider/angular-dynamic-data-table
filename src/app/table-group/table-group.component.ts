@@ -94,7 +94,6 @@ export class TableGroupComponent implements OnInit {
 
   sortDataSubscription() {
     this.columnSortedSubscription = this.sortService.columnSorted$.subscribe(event => {
-      console.log(event.sortColumn, event.sortDirection );
       this.sortColumn(event);
     });
   }
