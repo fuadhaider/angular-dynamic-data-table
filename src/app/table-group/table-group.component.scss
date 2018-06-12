@@ -31,15 +31,19 @@ div {
         height: 50px;
         th {
           @include table-border;
+          font-size: 2vmax;
         }
         #album-header {
           width: 10%;
         }
         #id-header {
-          width: 5%;
+          width: 10%;
         }
-        #title-header, #url-header {
-          width: 35%;
+        #title-header {
+          width: 30%;
+        }
+        #url-header {
+          width: 35%
         }
         #image-header {
           width: 10%;
