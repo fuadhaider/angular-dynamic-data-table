@@ -22,12 +22,16 @@ export class SortableColumnComponent implements OnInit, OnDestroy {
     @HostListener('click')
     sort() {
         this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-        this.sortService.columnSorted({ sortColumn: this.columnName, sortDirection: this.sortDirection });
+        this.sortService.columnSorted({
+          sortColumn: this.columnName, sortDirection: this.sortDirection
+        });
+        console.log(this.columnName, this.sortDirection);
     }
 
     ngOnInit() {
         // subscribe to sort changes so we can react when other columns are sorted
-        this.columnSortedSubscription = this.sortService.columnSorted$.subscribe(event => {
+        this.columnSortedSubscription = this.sortService.columnSorted$
+        .subscribe(event => {
             // reset this column's sort direction to hide the sort icons
             if (this.columnName != event.sortColumn) {
                 this.sortDirection = '';

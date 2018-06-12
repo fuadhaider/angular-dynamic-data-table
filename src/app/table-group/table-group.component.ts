@@ -74,6 +74,7 @@ export class TableGroupComponent implements OnInit {
       this.pageStart = this.pageLength * (a-1);
       this.pageEnd = this.pageStart + this.pageLength;
     }
+    this.getCurrentPage();
   }
 
   filterData() {
@@ -92,6 +93,7 @@ export class TableGroupComponent implements OnInit {
 
   sortAlbum() {
     this.sortService.columnSorted$.subscribe(event => {
+      console.log(event.sortColumn, event.sortDirection );
       if (event.sortDirection == '') {
         this.showData = this.showData.sort(function(a, b) {
           return a.albumId - b.albumId;
@@ -112,6 +114,8 @@ export class TableGroupComponent implements OnInit {
 
   sortId() {
     this.sortService.columnSorted$.subscribe(event => {
+      console.log(event.sortColumn, event.sortDirection );
+
       if (event.sortDirection == '') {
         this.showData = this.showData.sort(function(a, b) {
           return a.id - b.id;
@@ -132,6 +136,8 @@ export class TableGroupComponent implements OnInit {
 
   sortTitle() {
     this.sortService.columnSorted$.subscribe(event => {
+      console.log(event.sortColumn, event.sortDirection );
+
         if (event.sortDirection == '') {
           this.showData = this.showData.sort(function(a, b) {
             var nameA = a.title.toUpperCase();
@@ -176,6 +182,8 @@ export class TableGroupComponent implements OnInit {
 
   sortUrl() {
     this.sortService.columnSorted$.subscribe(event => {
+      console.log(event.sortColumn, event.sortDirection );
+
         if (event.sortDirection == '') {
           this.showData = this.showData.sort(function(a, b) {
             var nameA = a.url.toUpperCase();

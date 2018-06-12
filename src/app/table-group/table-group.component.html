@@ -21,10 +21,10 @@
       </td>
       <td id="page-input">
           Page number
-          <input #pageInput (keyup.enter)="getPageNumber(pageInput.value)"
-
-          placeholder="1 to {{totalPageNumber}}">
-          <button (click)="getPageNumber(pageInput.value)">Enter</button>
+          <input #pageInput (keyup.enter)="getPageNumber(pageInput.value);
+          pageInput.value=''" placeholder="1 to {{totalPageNumber}}">
+          <button (click)="getPageNumber(pageInput.value);
+          pageInput.value=''">Enter</button>
       </td>
     </tr>
   </tbody>
@@ -35,9 +35,9 @@
 <table id="data-table">
   <thead>
       <tr>
-        <th id="album-header" (click)="sortAlbum()" sortable-column="album">Album</th>
-        <th id="id-header" (click)="sortId()" sortable-column="id">ID</th>
-        <th id="title-header" (click)="sortTitle()" sortable-column="title">Title</th>
+        <th id="album-header" sortable-column="album" (click)="sortAlbum()">Album</th>
+        <th id="id-header" sortable-column="id" (click)="sortId()">ID</th>
+        <th id="title-header" sortable-column="title" (click)="sortTitle()">Title</th>
         <th id="urlHeader" (click)="sortUrl()" sortable-column="url">URL</th>
         <th id="image-header">Image</th>
       </tr>
