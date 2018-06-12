@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoadDataService } from './load-data.service';
 import { SortService } from './sort.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table-group',
@@ -16,6 +17,7 @@ export class TableGroupComponent implements OnInit {
   pageEnd: number = 50;
   totalPageNumber: number;
   currentPageNumber: number = 1;
+  private columnSortedSubscription: Subscription;
 
   constructor(private loadDataService: LoadDataService,
               private sortService: SortService) { }
@@ -91,7 +93,7 @@ export class TableGroupComponent implements OnInit {
   }
 
   sortDataSubscription() {
-    this.sortService.columnSorted$.subscribe(event => {
+    this.columnSortedSubscription = this.sortService.columnSorted$.subscribe(event => {
       console.log(event.sortColumn, event.sortDirection );
       this.sortColumn(event);
     });
@@ -214,5 +216,8 @@ export class TableGroupComponent implements OnInit {
         });
       }
     }
+  }
+  ngOnDestroy() {
+      this.columnSortedSubscription.unsubscribe();
   }
 }

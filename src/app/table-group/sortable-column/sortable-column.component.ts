@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy,
+  HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { SortService } from '../sort.service';
