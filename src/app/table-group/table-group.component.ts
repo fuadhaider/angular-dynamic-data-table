@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoadDataService } from './load-data.service';
 import { SortService } from './sort.service';
 
@@ -22,9 +22,10 @@ export class TableGroupComponent implements OnInit {
   constructor(private loadDataService: LoadDataService,
               private sortService: SortService) { }
 
-  // ngOnInit() {
-  //   this.getData();
-  // }
+  ngOnInit() {
+    this.getData();
+    this.sortDataSubscription();
+  }
 
   getData() {
     this.loadDataService.getUrlData().subscribe(data => {
@@ -91,129 +92,129 @@ export class TableGroupComponent implements OnInit {
     this.getCurrentPage();
   }
 
-  ngOnInit() {
-    this.getData();
+  sortDataSubscription() {
   // sortAlbum() {
     this.sortService.columnSorted$.subscribe(event => {
       console.log(event.sortColumn, event.sortDirection );
-      if (event.sortColumn == 'album') {
-        if (event.sortDirection == '') {
-          this.showData = this.showData.sort(function(a, b) {
-            return a.albumId - b.albumId;
-          });
-        }
-        else if (event.sortDirection == 'desc') {
-          this.showData = this.showData.sort(function(a, b) {
-            return b.albumId - a.albumId;
-          });
-        }
-        else if (event.sortDirection == 'asc') {
-          this.showData = this.showData.sort(function(a, b) {
-            return a.albumId - b.albumId;
-          });
-        }
-      }
-      else if (event.sortColumn == 'id') {
-        if (event.sortDirection == '') {
-          this.showData = this.showData.sort(function(a, b) {
-            return a.id - b.id;
-          });
-        }
-        else if (event.sortDirection == 'desc') {
-          this.showData = this.showData.sort(function(a, b) {
-            return b.id - a.id;
-          });
-        }
-        else if (event.sortDirection == 'asc') {
-          this.showData = this.showData.sort(function(a, b) {
-            return a.id - b.id;
-          });
-        }
-      }
-      else if (event.sortColumn == 'title') {
-
-          if (event.sortDirection == '') {
-            this.showData = this.showData.sort(function(a, b) {
-              var nameA = a.title.toUpperCase();
-              var nameB = b.title.toUpperCase();
-              if (nameA < nameB) {
-                return 1;
-              }
-              if (nameA > nameB) {
-                return -1;
-              }
-              return 0;
-            });
-          }
-          else if (event.sortDirection == 'desc') {
-            this.showData = this.showData.sort(function(a, b) {
-              var nameA = a.title.toUpperCase();
-              var nameB = b.title.toUpperCase();
-              if (nameA < nameB) {
-                return 1;
-              }
-              if (nameA > nameB) {
-                return -1;
-              }
-              return 0;
-            });
-          }
-          else if (event.sortDirection == 'asc') {
-            this.showData = this.showData.sort(function(a, b) {
-              var nameA = a.title.toUpperCase();
-              var nameB = b.title.toUpperCase();
-              if (nameA < nameB) {
-                return -1;
-              }
-              if (nameA > nameB) {
-                return 1;
-              }
-              return 0;
-            });
-          }
-      }
-      else if (event.sortColumn == 'url') {
-
-         if (event.sortDirection == '') {
-           this.showData = this.showData.sort(function(a, b) {
-             var nameA = a.url.toUpperCase();
-             var nameB = b.url.toUpperCase();
-             if (nameA < nameB) {
-               return 1;
-             }
-             if (nameA > nameB) {
-               return -1;
-             }
-             return 0;
-           });
-         }
-         else if (event.sortDirection == 'desc') {
-           this.showData = this.showData.sort(function(a, b) {
-             var nameA = a.url.toUpperCase();
-             var nameB = b.url.toUpperCase();
-             if (nameA < nameB) {
-               return 1;
-             }
-             if (nameA > nameB) {
-               return -1;
-             }
-             return 0;
-           });
-         }
-         else if (event.sortDirection == 'asc') {
-           this.showData = this.showData.sort(function(a, b) {
-             var nameA = a.url.toUpperCase();
-             var nameB = b.url.toUpperCase();
-             if (nameA < nameB) {
-               return -1;
-             }
-             if (nameA > nameB) {
-               return 1;
-             }
-             return 0;
-           });
-         }
-      }
+      this.sortColumn(event);
+      // if (event.sortColumn == 'album') {
+      //   if (event.sortDirection == '') {
+      //     this.showData = this.showData.sort(function(a, b) {
+      //       return a.albumId - b.albumId;
+      //     });
+      //   }
+      //   else if (event.sortDirection == 'desc') {
+      //     this.showData = this.showData.sort(function(a, b) {
+      //       return b.albumId - a.albumId;
+      //     });
+      //   }
+      //   else if (event.sortDirection == 'asc') {
+      //     this.showData = this.showData.sort(function(a, b) {
+      //       return a.albumId - b.albumId;
+      //     });
+      //   }
+      // }
+      // if (event.sortColumn == 'id') {
+      //   if (event.sortDirection == '') {
+      //     this.showData = this.showData.sort(function(a, b) {
+      //       return a.id - b.id;
+      //     });
+      //   }
+      //   else if (event.sortDirection == 'desc') {
+      //     this.showData = this.showData.sort(function(a, b) {
+      //       return b.id - a.id;
+      //     });
+      //   }
+      //   else if (event.sortDirection == 'asc') {
+      //     this.showData = this.showData.sort(function(a, b) {
+      //       return a.id - b.id;
+      //     });
+      //   }
+      // }
+      // else if (event.sortColumn == 'title') {
+      //
+      //     if (event.sortDirection == '') {
+      //       this.showData = this.showData.sort(function(a, b) {
+      //         var nameA = a.title.toUpperCase();
+      //         var nameB = b.title.toUpperCase();
+      //         if (nameA < nameB) {
+      //           return 1;
+      //         }
+      //         if (nameA > nameB) {
+      //           return -1;
+      //         }
+      //         return 0;
+      //       });
+      //     }
+      //     else if (event.sortDirection == 'desc') {
+      //       this.showData = this.showData.sort(function(a, b) {
+      //         var nameA = a.title.toUpperCase();
+      //         var nameB = b.title.toUpperCase();
+      //         if (nameA < nameB) {
+      //           return 1;
+      //         }
+      //         if (nameA > nameB) {
+      //           return -1;
+      //         }
+      //         return 0;
+      //       });
+      //     }
+      //     else if (event.sortDirection == 'asc') {
+      //       this.showData = this.showData.sort(function(a, b) {
+      //         var nameA = a.title.toUpperCase();
+      //         var nameB = b.title.toUpperCase();
+      //         if (nameA < nameB) {
+      //           return -1;
+      //         }
+      //         if (nameA > nameB) {
+      //           return 1;
+      //         }
+      //         return 0;
+      //       });
+      //     }
+      // }
+      // else if (event.sortColumn == 'url') {
+      //
+      //    if (event.sortDirection == '') {
+      //      this.showData = this.showData.sort(function(a, b) {
+      //        var nameA = a.url.toUpperCase();
+      //        var nameB = b.url.toUpperCase();
+      //        if (nameA < nameB) {
+      //          return 1;
+      //        }
+      //        if (nameA > nameB) {
+      //          return -1;
+      //        }
+      //        return 0;
+      //      });
+      //    }
+      //    else if (event.sortDirection == 'desc') {
+      //      this.showData = this.showData.sort(function(a, b) {
+      //        var nameA = a.url.toUpperCase();
+      //        var nameB = b.url.toUpperCase();
+      //        if (nameA < nameB) {
+      //          return 1;
+      //        }
+      //        if (nameA > nameB) {
+      //          return -1;
+      //        }
+      //        return 0;
+      //      });
+      //    }
+      //    else if (event.sortDirection == 'asc') {
+      //      this.showData = this.showData.sort(function(a, b) {
+      //        var nameA = a.url.toUpperCase();
+      //        var nameB = b.url.toUpperCase();
+      //        if (nameA < nameB) {
+      //          return -1;
+      //        }
+      //        if (nameA > nameB) {
+      //          return 1;
+      //        }
+      //        return 0;
+      //      });
+      //    }
+      // }
 
     });
   // }
@@ -331,4 +332,127 @@ export class TableGroupComponent implements OnInit {
     //     }
     //   });
   }
+    sortColumn(event) {
+      if (event.sortColumn == 'album') {
+        if (event.sortDirection == '') {
+          this.showData = this.showData.sort(function(a, b) {
+            return a.albumId - b.albumId;
+          });
+        }
+        else if (event.sortDirection == 'desc') {
+          this.showData = this.showData.sort(function(a, b) {
+            return b.albumId - a.albumId;
+          });
+        }
+        else if (event.sortDirection == 'asc') {
+          this.showData = this.showData.sort(function(a, b) {
+            return a.albumId - b.albumId;
+          });
+        }
+      }
+      else if (event.sortColumn == 'id') {
+          if (event.sortDirection == '') {
+            this.showData = this.showData.sort(function(a, b) {
+              return a.id - b.id;
+            });
+          }
+          else if (event.sortDirection == 'desc') {
+            this.showData = this.showData.sort(function(a, b) {
+              return b.id - a.id;
+            });
+          }
+          else if (event.sortDirection == 'asc') {
+            this.showData = this.showData.sort(function(a, b) {
+              return a.id - b.id;
+            });
+          }
+      }
+      else if (event.sortColumn == 'title') {
+
+          if (event.sortDirection == '') {
+            this.showData = this.showData.sort(function(a, b) {
+              var nameA = a.title.toUpperCase();
+              var nameB = b.title.toUpperCase();
+              if (nameA < nameB) {
+                return 1;
+              }
+              if (nameA > nameB) {
+                return -1;
+              }
+              return 0;
+            });
+          }
+          else if (event.sortDirection == 'desc') {
+            this.showData = this.showData.sort(function(a, b) {
+              var nameA = a.title.toUpperCase();
+              var nameB = b.title.toUpperCase();
+              if (nameA < nameB) {
+                return 1;
+              }
+              if (nameA > nameB) {
+                return -1;
+              }
+              return 0;
+            });
+          }
+          else if (event.sortDirection == 'asc') {
+            this.showData = this.showData.sort(function(a, b) {
+              var nameA = a.title.toUpperCase();
+              var nameB = b.title.toUpperCase();
+              if (nameA < nameB) {
+                return -1;
+              }
+              if (nameA > nameB) {
+                return 1;
+              }
+              return 0;
+            });
+          }
+      }
+      else if (event.sortColumn == 'url') {
+        if (event.sortDirection == '') {
+              this.showData = this.showData.sort(function(a, b) {
+                var nameA = a.url.toUpperCase();
+                var nameB = b.url.toUpperCase();
+                if (nameA < nameB) {
+                  return 1;
+                }
+                if (nameA > nameB) {
+                  return -1;
+                }
+                return 0;
+              });
+            }
+            else if (event.sortDirection == 'desc') {
+              this.showData = this.showData.sort(function(a, b) {
+                var nameA = a.url.toUpperCase();
+                var nameB = b.url.toUpperCase();
+                if (nameA < nameB) {
+                  return 1;
+                }
+                if (nameA > nameB) {
+                  return -1;
+                }
+                return 0;
+              });
+            }
+            else if (event.sortDirection == 'asc') {
+              this.showData = this.showData.sort(function(a, b) {
+                var nameA = a.url.toUpperCase();
+                var nameB = b.url.toUpperCase();
+                if (nameA < nameB) {
+                  return -1;
+                }
+                if (nameA > nameB) {
+                  return 1;
+                }
+                return 0;
+              });
+            }
+      }
+
+
+    }
+
+
 }
